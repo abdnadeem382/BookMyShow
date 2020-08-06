@@ -1,0 +1,74 @@
+body{
+  margin: 0;
+  padding: 0px 0px;
+  font-family: 'Playfair Display', serif;
+  background-image: url(https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700399882.jpg);
+  background-repeat: no-repeat;
+  background-size: 2000px 1700px;
+  min-height: 100vh;
+  background-position: center;
+}
+.logo{
+  margin-top: 5px;
+  margin-left: 20px;
+  width: 180px;
+  height: 50px;
+}
+.nav{
+  color: white;
+  text-decoration: none;
+  padding: 16px 18px;
+  font-size: 18px;
+}
+.main{
+  display: flex;
+  flex-wrap: wrap;
+  background-color: black;
+}
+.titlebar{
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  justify-content: flex-end;
+}
+.titlebar textsize{
+  margin-left: 10px;
+  font-size: 22px;
+}
+.titlebar a:hover, t:hover{
+  background-color: gainsboro;
+  color: black;
+  font-weight: bold;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.logoTitle{
+  width: 300px;
+  height: 180px;
+}
+.content{
+  margin: 5px;
+  width:800px;
+  justify-content: center;
+  align-items: center;
+}
+.content h3{
+color: white;
+margin-top: 40px;
+font-size: 24px;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.content p{
+color: white;
+font-size: 16px;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.content ul{
+color: white;
+font-size: 16px;
+font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
