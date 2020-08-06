@@ -1,6 +1,7 @@
 <html>
     <head>
         <link rel="stylesheet" href="Formc.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
     <body class='background'>
       
@@ -52,12 +53,16 @@
               }
           }
         if($fnameErr ==="" and $lnameErr=== "" and $phoneErr === "" and $emailErr ==="" ){
-              $sql = "INSERT INTO 'user' (fname, lname, email, phone)
-                      VALUES ($fname, $lname, $email, $phone)";  
+              // $FNAME = mysqli_real_escape_string($conn,$fname);
+              // $LNAME = mysqli_real_escape_string($conn,$lname);
+              // $EMAIL = mysqli_real_escape_string($conn,$email);
+              // $PHONE = mysqli_real_escape_string($conn,$phone);
+              $sql = "INSERT INTO user (fname, lname, email, phone)
+                      VALUES ('$fname', '$lname', '$email', '$phone')";  
               if (mysqli_query($conn, $sql)) {
-                echo "New record created successfully";
+               echo "<script> alert('Success')</script>";
               } else {
-                echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+                echo "<script> alert('ERROR!')</script>";
               }
               
 
@@ -113,7 +118,9 @@
               <div><input class="input" type="text" id="phone" name="phone" value ="<?php echo $phone ?>"  placeholder="Enter your phone number here.." ><p class="error"><?php echo $phoneErr; ?></p></input></div><br/>
             </div>
           </div>
+           
             <input type = "submit" value = "Submit" class= "sub"></input>
+
         </form>
       </div>
     </body>
