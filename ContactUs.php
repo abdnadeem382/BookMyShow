@@ -134,7 +134,7 @@ $messageErr = "";
       <label for='subject' class="labels"><b>Subject:</b></label><br>
       <input class ="inputs" type="text" id='subject' name="subject" value ="<?php echo $subject ?>" placeholder="Enter your subject here.."><p class="error"><?php echo $subjectErr; ?></p><br>
       <label for='message' class="labels"><b>Message:</b></label><br>
-      <textarea class ="inputs" id="message" rows = "3" cols = "30" name = "message" value ="<?php echo $message ?>" placeholder="Enter your message here.."></textarea><p class="error"><?php echo $messageErr; ?></p>
+      <textarea class ="inputs" id="message" rows = "3" cols = "29" name = "message" value ="<?php echo $message ?>" placeholder="Enter your message here.."></textarea><p class="error"><?php echo $messageErr; ?></p>
       <br>
       <input type="submit" value="Submit"/>
     </form>
