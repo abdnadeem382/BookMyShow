@@ -32,10 +32,10 @@ mysqli_close($con);
     <title>Timings</title>
 </head>
     <div class="main">
-    	<a href="Home.html"><img class="logo" src = "Logo.png" alt="main"></a>
+    	<a href="Home.php"><img class="logo" src = "Logo.png" alt="main"></a>
     	<div class="titlebar">
-    		<a class="nav" href="Home.html"><i class="fa fa-home"></i><textsize> Home</textsize></a>
-        	<a class="nav" href="#"><i class="fa fa-star"></i><textsize> About Us</textsize></a>
+    		<a class="nav" href="Home.php"><i class="fa fa-home"></i><textsize> Home</textsize></a>
+        	<a class="nav" href="AboutUs.html"><i class="fa fa-star"></i><textsize> About Us</textsize></a>
         	<a class="nav" href="ContactUs.html"><i class="fa fa-phone"></i><textsize> Contact Us</textsize></a>
         </div>
     </div>
@@ -89,6 +89,9 @@ mysqli_close($con);
         </p>
         
       </form>
+</div>
+<div class="button">
+  <a href="SeatsReservation.php?id=<?php echo $q;?>"><button class="next">Next</button></a>
 </div>
 
 </div>

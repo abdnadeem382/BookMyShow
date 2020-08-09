@@ -14,11 +14,11 @@ movie_name VARCHAR(30) NOT NULL,
 timings VARCHAR(500) NOT NULL,
 cast VARCHAR(1000),
 synopsis VARCHAR(1000),
-seats VARCHAR(50)
+seats VARCHAR(2000)
 )";
 
 if ($conn->query($sql) === TRUE) {
-  echo "Table MyGuests created successfully";
+  echo "Table Movies created successfully";
 } else {
   echo "Error creating table: " . $conn->error;
 }

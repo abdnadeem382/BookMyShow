@@ -3,7 +3,7 @@
     .bg{
         background-image: url(https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700399882.jpg);
         background-repeat: no-repeat;
-        background-size: 100% 100%;
+        background-size: 100%;
         display: flex;
         justify-content: space-around;
         align-items: center;
@@ -68,7 +68,9 @@
 }
 
 .movie{
+    width: 800px;
     color: #f0ebeb;
+    justify-content: center;
     text-align: center;
     font-size: larger;
     font-family: Verdana, Geneva, Tahoma, sans-serif; 
@@ -87,9 +89,23 @@
     font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 .timings{
+    width: 200px;
+    text-align: center;
+    margin-top: 30px;
     color: #f0ebeb;
     justify-content: center;
     align-items: center;
+}
+.button{
+    display: flex;
+    width: 90%;
+    justify-content: flex-end;
+    margin-bottom: 40px;
+}
+.next{
+            width: 100px;
+            height: 45px;
+            font-size: 28px;
 }
 .titlebar{
     display: flex;
@@ -107,7 +123,9 @@
     color: black;
     font-weight: bold;
 }
-
+.details{
+    margin-top: 50px;
+}
 .logo{
     margin-top: 5px;
     margin-left: 20px;
