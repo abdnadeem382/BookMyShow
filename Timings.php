@@ -39,11 +39,11 @@ mysqli_close($con);
     <title>Timings</title>
 </head>
     <div class="main">
-    	<a href="Home.php"><img class="logo" src = "Logo.png" alt="main"></a>
-    	<div class="titlebar">
-    		<a class="nav" href="Home.php"><i class="fa fa-home"></i><textsize> Home</textsize></a>
-        	<a class="nav" href="AboutUs.html"><i class="fa fa-star"></i><textsize> About Us</textsize></a>
-        	<a class="nav" href="ContactUs.html"><i class="fa fa-phone"></i><textsize> Contact Us</textsize></a>
+      <a href="Home.php"><img class="logo" src = "Logo.png" alt="main"></a>
+      <div class="titlebar">
+        <a class="nav" href="Home.php"><i class="fa fa-home"></i><textsize> Home</textsize></a>
+          <a class="nav" href="AboutUs.html"><i class="fa fa-star"></i><textsize> About Us</textsize></a>
+          <a class="nav" href="ContactUs.html"><i class="fa fa-phone"></i><textsize> Contact Us</textsize></a>
         </div>
     </div>
 <div class = "bg">
@@ -54,6 +54,9 @@ mysqli_close($con);
         ?></h1>
         <div class = "container">
             <img src = <?php echo $image ?> alt="main" class="image">
+        </div>
+        <div class="price">
+          Price: RS 500/- per seat
         </div>
     </div>
     <br/>
@@ -96,9 +99,6 @@ mysqli_close($con);
         </p>
         <input type = "submit" name ="submit" value = "Next" class= "sub"></input>
       </form>
-</div>
-<div class="button">
-  <a href="SeatsReservation.php?id=<?php echo $q;?>"><button type="submit" class="next">Next</button></a>
 </div>
 </div>
 </html>

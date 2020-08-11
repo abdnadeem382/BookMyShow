@@ -22,33 +22,14 @@
       $s = json_decode($_GET['selected']);
       $key = Array();
       foreach($s as $x => $x_value) {
-        if($x_value==='FALSE'){
+        if($x_value==='Selected'){
           $key[] = $x;
+          $x_value = "FALSE";
         }
+        $seats[$x] = $x_value;
       }
-      
-      $sql="SELECT * FROM Movies WHERE id = '".$q."'";
-      $result = mysqli_query($con,$sql);
-    
-      while($row = mysqli_fetch_array($result)){
-        $movie = $row['movie_name'];
-        $seats = unserialize($row['seats']);
-      }
-      $skey = Array();
-      foreach($seats as $st => $st_value) {
-          $skey[] = $st;
-      }
-      $length1 = count($key);
-      foreach($seats as $st => $st_value) {
-        for($j=0; $j<$length1; $j++){
-          if($st===$key[$j]){
-            $seats[$st]="FALSE";
-          }
-        }
-      }
-      print_r($seats);
-      $_SESSION['seats'] = $key; 
-      $_SESSION['movie'] = $movie;
+      $_SESSION['seats'] = $key;
+      $_SESSION['newseats'] = serialize($seats);
     }
       
       $fname = $lname =  $email  = $phone = "";
@@ -93,7 +74,7 @@
               $tempSeats = $_SESSION['seats'];
               $trpice = count($tempSeats)*500;
               $sql = "INSERT INTO Booking (fname, lname, phone, movie, timings, seats, tprice)
-                      VALUES ('$fname', '$lname', '$phone', '$movie', '$timing', '$tempSeats', '$trpice')";  
+                      VALUES ('$fname', '$lname', '$phone', '$movie', '$timing', '$tempSeats', '$trpice')";   
               if (mysqli_query($con, $sql)) {
                header('Location: Bill.php');
               } else {
@@ -101,7 +82,6 @@
                 echo "Error: " . $sql . "<br>" . mysqli_error($con);
               }
               
-
       }
         }
         mysqli_close($con);
@@ -131,9 +111,9 @@
 
       <div class="main">
         <div class="bar">
-          <a href="Home.php"><img class="logo" src = "Logo.png" alt="main"></a>
+          <a href="H.php"><img class="logo" src = "Logo.png" alt="main"></a>
           <div class="titlebar">
-            <a class="nav" href="Home.php"><i class="fa fa-home"></i><textsize> Home</textsize></a>
+            <a class="nav" href="H.php"><i class="fa fa-home"></i><textsize> Home</textsize></a>
               <a class="nav" href="#"><i class="fa fa-star"></i><textsize> About Us</textsize></a>
               <a class="nav" href="#"><i class="fa fa-phone"></i><textsize> Contact Us</textsize></a>
           </div>
