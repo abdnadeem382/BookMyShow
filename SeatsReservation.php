@@ -1,6 +1,7 @@
 <?php
-
-$q = intval($_GET['id']);
+session_start();
+print_r($_SESSION);
+$q = $_SESSION['id'];
 
 $con = mysqli_connect('localhost','root','','BookMyShow');
 if (!$con) {
@@ -19,17 +20,15 @@ $key = Array();
 foreach($seats as $x => $x_value) {
     $key[] = $x ;
     if($x_value==='TRUE'){
-        echo "yes";
+        //echo "yes";
     }
 }
-
-print_r($seats);
 
 mysqli_close($con);
 ?>
 
 <html>
-	<head>
+    <head>
         <link rel="stylesheet" href="SeatsReservation.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
@@ -40,18 +39,18 @@ mysqli_close($con);
         console.dir(seats);
         console.log(seats);
     </script>
-    	<a href="Home.php"><img class="logo" src = "Logo.png" alt="main"></a>
-    	<div class="titlebar">
-    		<a class="nav" href="Home.php"><i class="fa fa-home"></i><textsize> Home</textsize></a>
-        	<a class="nav" href="#"><i class="fa fa-star"></i><textsize> About Us</textsize></a>
-        	<a class="nav" href="#"><i class="fa fa-phone"></i><textsize> Contact Us</textsize></a>
+        <a href="Home.php"><img class="logo" src = "Logo.png" alt="main"></a>
+        <div class="titlebar">
+            <a class="nav" href="Home.php"><i class="fa fa-home"></i><textsize> Home</textsize></a>
+            <a class="nav" href="#"><i class="fa fa-star"></i><textsize> About Us</textsize></a>
+            <a class="nav" href="#"><i class="fa fa-phone"></i><textsize> Contact Us</textsize></a>
         </div>
     </div>
     <div class="image">
         <div class="heading">
             Seats Reservation
         </div>
-    	<div class="content">
+        <div class="content">
             <div class="tags">
                 <div class="box" style="background-color: white"></div>
                 <div class="text">Empty Seat</div>
@@ -150,13 +149,12 @@ mysqli_close($con);
                 </div>
             </div>
             </div>
-            </div> 
+            </div>
         <div class="buttoncontainer">
-            <!-- <button onclick="Save()" class="next">Next</button> -->
             <a id ="link" ><button class="next" >Next</button></a>   
         </div>
     </div>
-    	
+        
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
        
@@ -824,22 +822,13 @@ mysqli_close($con);
                 console.log(selected);
             });
             $(".next").click(function(){
-                $("#link").attr('href', 'Form.php?selected='+selected);
+                $("#link").attr('href', 'Form.php?id=<?php echo $q;?>&selected='+selected);
             });
         });
-        function e(){
-            $(document).ready(function(){
-                $( ".seats" ).addClass("disabled");
-            });
-        }
         function Save(){
             $(document).ready(function(){
                 $( ".selected" ).addClass("disabled");
                 $( ".selected" ).removeClass("selected");
-               // var selected = JSON.parse(seats);
-                var selected = JSON.stringify(seats);
-                console.log(selected);
-               $("#link").attr('href', 'Form.php?selected='+selected);
             }); 
         }
     </script>

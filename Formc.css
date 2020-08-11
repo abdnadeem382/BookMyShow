@@ -44,6 +44,8 @@
         background-image: url(https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700399882.jpg);
         background-repeat: no-repeat;
         background-size: 1850px 1000px;
+        flex-direction: column;
+        flex-wrap: wrap;
         }
     .main{
         flex-direction: column;

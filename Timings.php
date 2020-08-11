@@ -1,12 +1,13 @@
 <?php
-
+session_start();
+if (!isset($_POST["submit"])){
 $q = intval($_GET['id']);
-
+$_SESSION['id'] = $q;
 $con = mysqli_connect('localhost','root','','BookMyShow');
 if (!$con) {
   die('Could not connect: ' . mysqli_error($con));
 }
-
+$movie="";
 mysqli_select_db($con,"BookMyShow");
 
 $sql="SELECT * FROM Movies WHERE id = '".$q."'";
@@ -18,6 +19,12 @@ while($row = mysqli_fetch_array($result)){
   $cast = $row['cast'];
   $synopsis = $row['synopsis'];
   $timings = unserialize($row['timings']);
+}
+$_SESSION["movie"] = $movie;
+}
+if(isset($_POST["submit"])){
+  $_SESSION["timing"] = $_POST["radio-group"];
+  header('Location: SeatsReservation.php');
 }
 
 mysqli_close($con);
@@ -68,31 +75,30 @@ mysqli_close($con);
 </div>
 <div class = "timings">
     <h2 id= "timing">TIMINGS</h2>
-    <form action="#">
+    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
         <p>
-          <input type="radio" id="test1" name="radio-group" checked>
+          <input type="radio" id="test1" value="<?php echo $timings[0];?>" name="radio-group" checked>
           <label for="test1"><?php 
           echo $timings[0];
         ?></label>
         </p>
         <p>
-          <input type="radio" id="test2" name="radio-group">
+          <input type="radio" id="test2" value="<?php echo $timings[1];?>" name="radio-group">
           <label for="test2"><?php 
           echo $timings[1];
         ?></label>
         </p>
         <p>
-          <input type="radio" id="test3" name="radio-group">
+          <input type="radio" id="test3" value="<?php echo $timings[2];?>" name="radio-group">
           <label for="test3"><?php 
           echo $timings[2];
         ?></label>
         </p>
-        
+        <input type = "submit" name ="submit" value = "Next" class= "sub"></input>
       </form>
 </div>
 <div class="button">
-  <a href="SeatsReservation.php?id=<?php echo $q;?>"><button class="next">Next</button></a>
+  <a href="SeatsReservation.php?id=<?php echo $q;?>"><button type="submit" class="next">Next</button></a>
 </div>
-
 </div>
 </html>

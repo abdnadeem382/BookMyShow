@@ -3,18 +3,53 @@
         <link rel="stylesheet" href="Formc.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
-    <body class='background'>
+    <body>
       
     <?php
-      $servername = "localhost";
-      $username = "root";
-      $password = "";
-      $dbname = "test";
-
-      $conn = mysqli_connect($servername, $username, $password, $dbname);
-      if (!$conn) {
-        die("Connection failed: " . mysqli_connect_error());
+      session_start();
+      $con = mysqli_connect('localhost','root','','BookMyShow');
+      if (!$con) {
+        die('Could not connect: ' . mysqli_error($con));
       }
+      mysqli_select_db($con,"BookMyShow");
+
+
+      $movie =$_SESSION['movie'];
+      $timing = $_SESSION['timing'];
+      $seats = Array();
+      if(!isset($_POST['submit'])){
+      $q = $_SESSION['id'];
+      $s = json_decode($_GET['selected']);
+      $key = Array();
+      foreach($s as $x => $x_value) {
+        if($x_value==='FALSE'){
+          $key[] = $x;
+        }
+      }
+      
+      $sql="SELECT * FROM Movies WHERE id = '".$q."'";
+      $result = mysqli_query($con,$sql);
+    
+      while($row = mysqli_fetch_array($result)){
+        $movie = $row['movie_name'];
+        $seats = unserialize($row['seats']);
+      }
+      $skey = Array();
+      foreach($seats as $st => $st_value) {
+          $skey[] = $st;
+      }
+      $length1 = count($key);
+      foreach($seats as $st => $st_value) {
+        for($j=0; $j<$length1; $j++){
+          if($st===$key[$j]){
+            $seats[$st]="FALSE";
+          }
+        }
+      }
+      print_r($seats);
+      $_SESSION['seats'] = $key; 
+      $_SESSION['movie'] = $movie;
+    }
       
       $fname = $lname =  $email  = $phone = "";
       $fnameErr = $lnameErr = $emailErr = $phoneErr = ""; 
@@ -53,22 +88,23 @@
               }
           }
         if($fnameErr ==="" and $lnameErr=== "" and $phoneErr === "" and $emailErr ==="" ){
-              // $FNAME = mysqli_real_escape_string($conn,$fname);
-              // $LNAME = mysqli_real_escape_string($conn,$lname);
-              // $EMAIL = mysqli_real_escape_string($conn,$email);
-              // $PHONE = mysqli_real_escape_string($conn,$phone);
-              $sql = "INSERT INTO user (fname, lname, email, phone)
-                      VALUES ('$fname', '$lname', '$email', '$phone')";  
-              if (mysqli_query($conn, $sql)) {
-               echo "<script> alert('Success')</script>";
+              
+              // $seatsSerialize = serialize($seats);
+              $tempSeats = $_SESSION['seats'];
+              $trpice = count($tempSeats)*500;
+              $sql = "INSERT INTO Booking (fname, lname, phone, movie, timings, seats, tprice)
+                      VALUES ('$fname', '$lname', '$phone', '$movie', '$timing', '$tempSeats', '$trpice')";  
+              if (mysqli_query($con, $sql)) {
+               header('Location: Bill.php');
               } else {
-                echo "<script> alert('ERROR!')</script>";
+                // echo "<script> alert('ERROR!')</script>";
+                echo "Error: " . $sql . "<br>" . mysqli_error($con);
               }
               
 
       }
         }
-        mysqli_close($conn);
+        mysqli_close($con);
         function testInput($data){
           $data = trim($data);
           $data = stripcslashes($data);
@@ -95,17 +131,18 @@
 
       <div class="main">
         <div class="bar">
-          <a href="Home.html"><img class="logo" src = "Logo.png" alt="main"></a>
+          <a href="Home.php"><img class="logo" src = "Logo.png" alt="main"></a>
           <div class="titlebar">
-            <a class="nav" href="Home.html"><i class="fa fa-home"></i><textsize> Home</textsize></a>
+            <a class="nav" href="Home.php"><i class="fa fa-home"></i><textsize> Home</textsize></a>
               <a class="nav" href="#"><i class="fa fa-star"></i><textsize> About Us</textsize></a>
               <a class="nav" href="#"><i class="fa fa-phone"></i><textsize> Contact Us</textsize></a>
           </div>
         </div>
+        <div class="background">
         <div class="heading">
           <h1>Customer Details</h1>
         </div>
-        <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"> 
+          <form method="POST" action="<?php echo $_SERVER['PHP_SELF']; ?>"> 
           <div class="form">
             <div class="labels">
               <div><label for="fname">First Name</label></div>
@@ -119,9 +156,9 @@
             </div>
           </div>
            
-            <input type = "submit" value = "Submit" class= "sub"></input>
+          <input type = "submit" value = "Submit" class= "sub" name ="submit"></input>
 
         </form>
-      </div>
+      </div></div>
     </body>
 </html>

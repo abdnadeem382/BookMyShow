@@ -1,4 +1,34 @@
+<?php
+    session_start();
+    $con = mysqli_connect('localhost','root','','BookMyShow');
+      if(!$con) {
+        die('Could not connect: ' . mysqli_error($con));
+      }
+        $fname= $lname = $phone = $movie = $timing = $tprice = "";
+        $seats = Array();
+      mysqli_select_db($con,"BookMyShow");
+      $sql = "select * from Booking ORDER BY id DESC LIMIT 1";
+      if (mysqli_query($con, $sql)) {
+        $result = mysqli_query($con,$sql);
+        while($row = mysqli_fetch_array($result)){
+            $fname = $row['fname'];
+            $lname = $row['lname'];
+            $phone = $row['phone'];
+            $movie = $row['movie'];
+            $timing = $row['timings'];
+            $seats = $row['seats'];
+            $tprice = $row['tprice'];
+        }
+        // $selected  = unserialize($seats);
+        // $selectedStr = implode(" ",$seats);
+        $selected = implode(" ", $_SESSION["seats"]);
+        print_r($_SESSION);
+      }
+      else{
+        echo "Error: " . $sql . "<br>" . mysqli_error($con);
+      }
 
+?>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,51 +45,33 @@
         	<a class="nav" href="ContactUs.html"><i class="fa fa-phone"></i><textsize> Contact Us</textsize></a>
         </div>
     </div>
-    <div class ="main">
-    
-        <div class= "heading">
-            <h1>THANK YOU FOR VISITING!</h1>
-        </div>
-        <div class ="bill">
-            <div id= "billHeading">
-                <h1>Bill Details</h1>
+    <div class="back">
+        <div class ="main">
+            <div class= "heading">
+                <h1>THANK YOU FOR VISITING!</h1>
             </div>
-            <div id= "nameAndPhone">
-                <div class="name">
-                    <p>abdullah nadeem</p></br>
+            <div class ="bill">
+                <div id= "billHeading">
+                    <h1>Bill Details</h1><br>
                 </div>
-                <div class="phone">
-                    <p>03345009516</p>
-                </div>
-            </div>
-            <div id="movieAndTime">
-                <div class="movie">
-                    <p>Avengers</p>
-                </div>
-                <div class="time">
-                    <p>10pm-12:30pm</p>
-                </div>
-            </div>
-            <div>
-            <div id="seats">
-                <p>Seats: </p>
-                <p>A1,A2,A3</p>
-            </div>
-            <div id="price">
-                <p>Total Price: </p>
-                <p>1000 PKR</p>
-            </div>
+                <div class="text">
+                    <LABEL>Customer Name:<?php echo $fname ."" . $lname?></LABEL><br><br>
+                    <LABEL>Phone No: <?php echo $phone?></LABEL><br><br><br>
+                    <LABEL>Movie Name: <?php echo $movie?></LABEL><br><br>
+                    <LABEL>Timings: <?php echo $timing?></LABEL><br><br><br>
+                    <LABEL>Seats: <?php echo $selected?></LABEL><br><br>
+                    <LABEL>Total Price: <?php echo $tprice?></LABEL><br><br>
+                </div> 
             </div>
         </div>
         <div id="SeeYou">
             <h1>SEE YOU SOON!</h1>
         </div>
-        </div>
+    </div>
     <div class ="footer">
     <div><p class = "contact"><text><i class="fa fa-phone" aria-hidden="true"></i>   +92 311 1222742</text><br><br/></p></div>
     <div><p class ="contact"><text><i class="fa fa-envelope" aria-hidden="true"></i>  ask@bookmyshow.pk</text><br><br/></p></div>
     <div><p class ="contact"><text><i class="fa fa-globe" aria-hidden="true"></i>  www.bookmyshow.pk</text></p></div>
-
   </div>        
 </body>
 </html>
