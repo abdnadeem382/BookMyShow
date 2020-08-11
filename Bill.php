@@ -22,11 +22,23 @@
         // $selected  = unserialize($seats);
         // $selectedStr = implode(" ",$seats);
         $selected = implode(" ", $_SESSION["seats"]);
-        print_r($_SESSION);
+        $newSeats = $_SESSION["newseats"];
+        $q = $_SESSION['id'];
+        $sql2 = "UPDATE Movies SET seats='$newSeats' WHERE id='$q'";
+        if ($con->query($sql2) === TRUE) {
+            echo "Record updated successfully";
+        } else {
+            echo "Error updating record: " . $con->error;
+        }
       }
       else{
         echo "Error: " . $sql . "<br>" . mysqli_error($con);
       }
+
+       
+
+
+mysqli_close($con);
 
 ?>
 <html lang="en">
@@ -38,11 +50,11 @@
 </head>
 <body>
     <div id="main">
-    	<a href="Home.html"><img class="logo" src = "Logo.png" alt="main"></a>
-    	<div class="titlebar">
-    		<a class="nav" href="Home.html"><i class="fa fa-home"></i><textsize> Home</textsize></a>
-        	<a class="nav" href="AboutUs.html"><i class="fa fa-star"></i><textsize> About Us</textsize></a>
-        	<a class="nav" href="ContactUs.html"><i class="fa fa-phone"></i><textsize> Contact Us</textsize></a>
+        <a href="H.php"><img class="logo" src = "Logo.png" alt="main"></a>
+        <div class="titlebar">
+            <a class="nav" href="H.php"><i class="fa fa-home"></i><textsize> Home</textsize></a>
+            <a class="nav" href="AboutUs.html"><i class="fa fa-star"></i><textsize> About Us</textsize></a>
+            <a class="nav" href="ContactUs.html"><i class="fa fa-phone"></i><textsize> Contact Us</textsize></a>
         </div>
     </div>
     <div class="back">
@@ -55,7 +67,7 @@
                     <h1>Bill Details</h1><br>
                 </div>
                 <div class="text">
-                    <LABEL>Customer Name:<?php echo $fname ."" . $lname?></LABEL><br><br>
+                    <LABEL>Customer Name: <?php echo $fname ." " . $lname?></LABEL><br><br>
                     <LABEL>Phone No: <?php echo $phone?></LABEL><br><br><br>
                     <LABEL>Movie Name: <?php echo $movie?></LABEL><br><br>
                     <LABEL>Timings: <?php echo $timing?></LABEL><br><br><br>
