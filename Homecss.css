@@ -1,4 +1,6 @@
-
+<head>
+    <title>Home Page></title>
+    <style>
         body{
             font-family: Arial;
         }
@@ -27,52 +29,13 @@
         }
         .titlebar textsize{
             margin-left: 10px;
-            font-size: 22px;
+            font-size: 20px;
         }
         .titlebar a:hover, t:hover{
             background-color: gainsboro;
             color: black;
             font-weight: bold;
         }
-        @media only screen and (max-width: 500px){
-            .image{
-                display: flex;
-                justify-content: flex-end;
-                background-image: url("Main-500-300.jpg");
-                background-repeat: no-repeat;
-                background-size: 100% 100%;
-                align-items: flex-end;
-                justify-content: flex-start;
-            }
-            .searchbar{
-                justify-content: center;
-            }
-        }
-        @media only screen and (min-width: 501px) and (max-width: 840px){
-            .image{
-                display: flex;
-                justify-content: flex-end;
-                background-image: url("Main-840-400.jpg");
-                background-repeat: no-repeat;
-                background-size: 100% 100%;
-                min-height: 85vh;
-                align-items: flex-end;
-                justify-content: flex-start;
-            }
-        }
-        @media only screen and (min-width: 841px) and (max-width: 1200px){
-            .image{
-                display: flex;
-                justify-content: flex-end;
-                background-image: url("Main.jpg");
-                background-repeat: no-repeat;
-                background-size: 100% 100%;
-                min-height: 85vh;
-                align-items: flex-end;
-                justify-content: flex-start;
-            }
-        }
-        @media screen and (min-width:1201px) and (max-width: 1600px){
         .image{
             display: flex;
             justify-content: flex-end;
@@ -81,14 +44,6 @@
             background-size: 100% 100%;
             min-height: 85vh;
         }
-        .searchbar{
-            display: flex;
-            flex-grow: 1;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-            margin-right: 10px;
-        }
-    }
         .now{
             margin-top: 300px;
             margin-right: 140px;
@@ -149,7 +104,13 @@
         .active, .txt:hover{
             border-bottom: 5px solid red;
         }  
-        
+        .searchbar{
+            display: flex;
+            flex-grow: 1;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+            margin-right: 10px;
+        }
         .search{
             width: 320px;
             height: 50px;
@@ -220,4 +181,5 @@
             font-size: 22px;
             font-weight: bold;
         }
- 
+    </style>
+</head>

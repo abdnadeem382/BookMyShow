@@ -2,17 +2,25 @@
 @media only screen and (max-width: 719px){
     .bg{
         background-image: url(https://wallpaper-mania.com/wp-content/uploads/2018/09/High_resolution_wallpaper_background_ID_77700399882.jpg);
-        background-repeat: no-repeat;
-        background-size: 100%;
+        background-size: cover;
         display: flex;
         justify-content: space-around;
         align-items: center;
         flex-direction: column;
         flex-wrap: wrap;
+        width: 100%;
+    }
+    body{
+        justify-content: center;
+        align-items: center;
+        text-align: center;
     }
     .background{
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
     }
     .container{
         display: inline-block;
@@ -21,7 +29,7 @@
         margin: 0 auto;
     }
     .image{
-        height: 220px;
+        height: 300px;
         width: 190px;
     }
     .main{
@@ -101,11 +109,6 @@
     width: 90%;
     justify-content: flex-end;
     margin-bottom: 40px;
-}
-.next{
-            width: 100px;
-            height: 45px;
-            font-size: 28px;
 }
 .titlebar{
     display: flex;
@@ -187,4 +190,16 @@
     opacity: 1;
     -webkit-transform: scale(1);
     transform: scale(1);
+}
+.sub{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 150px;
+    height: 50px;
+    font-size: 20px;
+}
+.price{
+    margin-top: 10px;
+    color: white;
+    font-size: 20px;
 }
