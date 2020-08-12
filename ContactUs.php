@@ -8,7 +8,7 @@
   $servername = "localhost";
   $username = "root";
   $password = "";
-  $dbname = "test";
+  $dbname = "bookmyshow";
 
 $fname = "";
 $lname = "";
@@ -74,7 +74,7 @@ $messageErr = "";
                 
 
   if($fnameErr === "" and $lnameErr === "" and $emailErr === "" and $contactErr === "" and $subjectErr === "" and $messageErr === ""){
-    $sql = "INSERT INTO data (fname, lname, email, contact, msgSubject, msg)
+    $sql = "INSERT INTO feedback (fname, lname, email, phone, msgSubject, msg)
     VALUES ('$fname', '$lname', '$email', '$contact', '$subject', '$message')";
 
     if(mysqli_query($conn, $sql)){

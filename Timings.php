@@ -40,11 +40,11 @@ mysqli_close($con);
 </head>
 
     <div class="main">
-      <a href="Home.php"><img class="logo" src = "Logo.png" alt="main"></a>
+      <a href="H.php"><img class="logo" src = "Logo.png" alt="main"></a>
       <div class="titlebar">
-        <a class="nav" href="Home.php"><i class="fa fa-home"></i><textsize> Home</textsize></a>
+        <a class="nav" href="H.php"><i class="fa fa-home"></i><textsize> Home</textsize></a>
           <a class="nav" href="AboutUs.html"><i class="fa fa-star"></i><textsize> About Us</textsize></a>
-          <a class="nav" href="ContactUs.html"><i class="fa fa-phone"></i><textsize> Contact Us</textsize></a>
+          <a class="nav" href="ContactUs.php"><i class="fa fa-phone"></i><textsize> Contact Us</textsize></a>
         </div>
     </div>
 <body>
